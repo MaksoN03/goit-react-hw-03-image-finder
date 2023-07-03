@@ -1,48 +1,64 @@
-import { Component } from 'react';
-import css from 'styles.module.css';
-import { toast } from 'react-hot-toast';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { BiSearch } from 'react-icons/bi';
+import {
+  FormInput,
+  Header,
+  SearchForm,
+  SubmitBtn,
+  SubmitBtnLabel,
+} from './SearchBar.styled';
 
-export class Searchbar extends Component {
+export default class SearchBar extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
-    value: '',
+    search: '',
   };
 
-  handleChange = ({ target: { value } }) => {
-    this.setState({ value });
+  onChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value,
+    });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    if (!this.state.value.trim()) {
-      return toast.error('Enter correct search query')
-    }
-    this.props.onSearch(this.state.value);
-    this.setState({ value: '' });
+  handleSubmit = event => {
+    event.preventDefault();
+    const { onSubmit } = this.props;
+
+    onSubmit(event.currentTarget.children[1].value);
+
+    this.setState({
+      search: '',
+    });
   };
 
   render() {
-    const { value } = this.state;
-    const { handleChange } = this;
-    return (
-      <>
-        <header className={css.Searchbar}>
-          <form className={css.SearchForm} onSubmit={this.handleSubmit}>
-            <button type="submit" className={css.SearchForm_button}>
-              <span className={"button-label"}>Search</span>
-            </button>
+    const { search } = this.state;
 
-            <input
-              className={css.SearchForm_input}
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              value={value}
-              onChange={handleChange}
-            />
-          </form>
-        </header>
-      </>
+    return (
+      <Header>
+        <SearchForm onSubmit={this.handleSubmit}>
+          <SubmitBtn type="submit">
+            <BiSearch size={25} />
+            <SubmitBtnLabel>Search</SubmitBtnLabel>
+          </SubmitBtn>
+
+          <FormInput
+            onChange={this.onChange}
+            value={search}
+            name="search"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+        </SearchForm>
+      </Header>
     );
   }
 }

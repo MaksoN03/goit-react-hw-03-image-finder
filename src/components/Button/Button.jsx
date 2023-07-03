@@ -1,9 +1,12 @@
-import css from 'styles.module.css';
+import React from 'react';
+import { ButtonLoadMore } from './Button.styled';
 
-export const Button = ({ onClick }) => {
+const Button = ({ onClick }) => {
   return (
-    <button onClick={onClick} type="button" className={css.Button}>
-      <span className="button-label">Load more</span>
-    </button>
+    <ButtonLoadMore type="button" onClick={onClick}>
+      Load More
+    </ButtonLoadMore>
   );
 };
+
+export default Button;
