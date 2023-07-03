@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Modal from 'components/Modal';
+import Modal from 'components/Modal/Modal';
 import React, { Component } from 'react';
 import { Image, ImageListItem } from './ImageGalleryItem.styled';
 
