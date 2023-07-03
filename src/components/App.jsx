@@ -6,7 +6,7 @@ import { Container } from './App.styled';
 import Button from './Button/Button';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Loader from './Loader/Loader';
-import SearchBar from './Searchbar/SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 export class App extends Component {
   state = {
