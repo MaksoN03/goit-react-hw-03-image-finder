@@ -7,7 +7,7 @@ import {
   SearchForm,
   SubmitBtn,
   SubmitBtnLabel,
-} from './SearchBar.styled';
+} from '../SearchBar/SearchBar.styled';
 
 export default class SearchBar extends Component {
   static propTypes = {
